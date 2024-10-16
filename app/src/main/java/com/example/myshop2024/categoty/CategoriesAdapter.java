@@ -1,5 +1,6 @@
 package com.example.myshop2024.categoty;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,8 @@ import com.example.myshop2024.constants.Urls;
 import com.example.myshop2024.dto.CategoryItemDTO;
 
 import java.util.List;
+
+import okhttp3.logging.HttpLoggingInterceptor;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHolder> {
     private List<CategoryItemDTO> items;
@@ -36,7 +39,14 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
         if(items!=null && position<items.size()) {
             CategoryItemDTO item = items.get(position);
             holder.getCategoryName().setText(item.getName());
-            String url = Urls.BASE+"/images/"+item.getImagePath();
+
+            String ImageUrl = item.getImagePath();
+            ImageUrl = ImageUrl.replace("\\","/");
+            String url = Urls.BASE+"/"+ImageUrl;
+
+            Log.v("image url:" , url);
+
+            //String url = Urls.BASE+"/images/"+item.getImagePath();
 
             Glide.with(holder.itemView.getContext())
                     .load(url)

@@ -39,8 +39,10 @@ public class CategoryCreateActivity extends BaseActivity {
 
     private ImageView ivSelectImage;
     private static final int PICK_IMAGE = 1;
-    private String filePath;
+
+    private String imagePath;
     TextInputLayout tlCategoryName;
+    TextInputLayout tlCategoryDescription;
 
 
     private final String TAG="CategoryCreateActivity";
@@ -71,13 +73,23 @@ public class CategoryCreateActivity extends BaseActivity {
 
         ivSelectImage = findViewById(R.id.ivSelectImage);
         tlCategoryName = findViewById(R.id.tlCategoryName);
+        tlCategoryDescription = findViewById(R.id.tlCategoryDescription);
 
-        String url = "http://malyska123.somee.com/images/noimage.jpg";
+        //String url = "http://malyska123.somee.com/images/noimage.jpg";
+        String url = "http://newmyshop2024.somee.com/uploadingImages//noimage.jpg";
+
+
+
         Glide
                 .with(this)
                 .load(url)
                 .apply(new RequestOptions().override(300))
                 .into(ivSelectImage);
+
+
+
+
+
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
 //            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -106,7 +118,7 @@ public class CategoryCreateActivity extends BaseActivity {
                     .into(ivSelectImage);
 
             // If you want to get the file path from the URI, you can use the following code:
-            filePath = getPathFromURI(uri);
+            imagePath = getPathFromURI(uri);
         }
     }
 
@@ -126,16 +138,18 @@ public class CategoryCreateActivity extends BaseActivity {
 
     public void onCreateCategory(View view) {
         String name = Objects.requireNonNull(tlCategoryName.getEditText()).getText().toString().trim();
-        Log.v(TAG, name + "###" + filePath);
+        String description = Objects.requireNonNull(tlCategoryDescription.getEditText()).getText().toString().trim();
+        Log.v(TAG, name + "###" + imagePath + "###" + description);
 
         Map<String, RequestBody> params = new HashMap<>();
         params.put("name", RequestBody.create(MediaType.parse("text/plain"), name));
+        params.put("description", RequestBody.create(MediaType.parse("text/plain"), description));
 
         MultipartBody.Part imagePart = null;
-        if (filePath != null) {
-            File imageFile = new File(filePath);
-            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile);
-            imagePart = MultipartBody.Part.createFormData("image", imageFile.getName(), requestFile);
+        if (imagePath != null) {
+            File imageFile = new File(imagePath);
+            RequestBody requestFile = RequestBody.create(MediaType.parse("image/*"), imageFile);//uploadingImages
+            imagePart = MultipartBody.Part.createFormData("imageFile", imageFile.getName(), requestFile);
         }
 
         ApplicationNetwork.getInstance()

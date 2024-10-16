@@ -21,21 +21,15 @@
         android:theme="@style/Theme.MyShop2024"
         tools:targetApi="31">
 
-        <activity
-            android:name=".BaseActivity"
-            android:exported="false"
-            android:theme="@style/Theme.MyShop2024" />
 
         <activity
             android:name=".categoty.CategoryCreateActivity"
-            android:exported="true" >
+            android:exported="false" >
 
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
 
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
         </activity>
+
+
 
         <activity
             android:name=".CategoryActivity"
@@ -43,9 +37,16 @@
 
         </activity>
 
+
+
         <activity
             android:name=".MainActivity"
-            android:exported="false">
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
 
         </activity>
     </application>

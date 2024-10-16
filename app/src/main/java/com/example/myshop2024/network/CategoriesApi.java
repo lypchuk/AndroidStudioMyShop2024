@@ -15,10 +15,12 @@ import retrofit2.http.PartMap;
 
 public interface CategoriesApi {
     @Multipart
-    @POST("/api/category")
+    @POST("/api/Category/create")
+    //@POST("/api/category")
     public Call<Void> create(@PartMap Map<String, RequestBody> params,
-                             @Part MultipartBody.Part image);
+                             @Part MultipartBody.Part imageFile);
 
-    @GET("/api/Category")
+    @GET("/api/Category/all")
+    //@GET("/api/Category")
     public Call<List<CategoryItemDTO>> list();
 }

@@ -33,7 +33,6 @@ public class BaseActivity extends AppCompatActivity {
             startActivity(intent);
             return true;
         }
-
         else if(select== R.id.menu_category_create_activity) {
             Intent intent = new Intent(BaseActivity.this, CategoryCreateActivity.class);
             startActivity(intent);
