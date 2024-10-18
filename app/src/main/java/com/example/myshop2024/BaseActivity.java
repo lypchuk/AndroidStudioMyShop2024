@@ -23,6 +23,7 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int select = item.getItemId();
+        //what menu items do
         if(select==R.id.menu_main_activity) {
             Intent intent = new Intent(BaseActivity.this, MainActivity.class);
             startActivity(intent);

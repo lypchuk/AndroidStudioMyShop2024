@@ -61,14 +61,12 @@ public class CategoryActivity extends BaseActivity {
 
         //ImageView imgTest = findViewById(R.id.imgTest);
         //Glide.with(this).load(url).into(imgTest);
-
         //textViewCategoryName = findViewById(R.id.textViewCategoryName);
-
         //Retrofit retrofit  = new Retrofit.Builder().baseUrl("http://newmyshop2024.somee.com").addConverterFactory(GsonConverterFactory.create()).build();
-
     }
 
     void loadList() {
+        //implement service categories api method list(get all)
         ApplicationNetwork
                 .getInstance()
                 .getCategoriesApi()
@@ -76,13 +74,15 @@ public class CategoryActivity extends BaseActivity {
                 .enqueue(new Callback<List<CategoryItemDTO>>() {
                     @Override
                     public void onResponse(Call<List<CategoryItemDTO>> call, Response<List<CategoryItemDTO>> response) {
+                        //method if ok
                         List<CategoryItemDTO> items = response.body();
                         CategoriesAdapter ca = new CategoriesAdapter(items);
+                        //create list CategoryItemDTOs
                         rcCategories.setAdapter(ca);
                     }
                     @Override
                     public void onFailure(Call<List<CategoryItemDTO>> call, Throwable throwable) {
-
+                        //method if bad
                     }
                 });
     }

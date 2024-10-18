@@ -17,6 +17,7 @@ import java.util.List;
 
 import okhttp3.logging.HttpLoggingInterceptor;
 
+//class for create list categories
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHolder> {
     private List<CategoryItemDTO> items;
 
@@ -25,6 +26,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
         this.items = items;
     }
 
+    //use parent component category_view_item for CategoryCardViewHolder
     @NonNull
     @Override
     public CategoryCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -34,12 +36,16 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
         return new CategoryCardViewHolder(view);
     }
 
+    //method build list, use ... automatically ... ?
     @Override
     public void onBindViewHolder(@NonNull CategoryCardViewHolder holder, int position) {
         if(items!=null && position<items.size()) {
             CategoryItemDTO item = items.get(position);
             holder.getCategoryName().setText(item.getName());
 
+            //set Id category for delete and edit
+            holder.setId(item.getId());
+            //get image from server
             String ImageUrl = item.getImagePath();
             ImageUrl = ImageUrl.replace("\\","/");
             String url = Urls.BASE+"/"+ImageUrl;

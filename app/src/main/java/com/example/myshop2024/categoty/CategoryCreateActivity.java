@@ -47,6 +47,7 @@ public class CategoryCreateActivity extends BaseActivity {
 
     private final String TAG="CategoryCreateActivity";
     public  boolean isStoragePermissionGranted() {
+        //check access to storage image/photo on smartphone
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                     == PackageManager.PERMISSION_GRANTED) {
@@ -59,14 +60,17 @@ public class CategoryCreateActivity extends BaseActivity {
                 return false;
             }
         }
-        else { //permission is automatically granted on sdk<23 upon installation
+        else {
+            //permission is automatically granted on sdk<23 upon installation
             Log.v(TAG,"Permission is granted");
             return true;
         }
     }
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //get data from input on form
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_category_create);
@@ -77,17 +81,11 @@ public class CategoryCreateActivity extends BaseActivity {
 
         //String url = "http://malyska123.somee.com/images/noimage.jpg";
         String url = "http://newmyshop2024.somee.com/uploadingImages//noimage.jpg";
-
-
-
         Glide
                 .with(this)
                 .load(url)
                 .apply(new RequestOptions().override(300))
                 .into(ivSelectImage);
-
-
-
 
 
 //        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -99,12 +97,14 @@ public class CategoryCreateActivity extends BaseActivity {
     }
 
     public void openGallery(View view) {
+        //open gallery on smartphone
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         startActivityForResult(intent, PICK_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //used constructor base class
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == PICK_IMAGE && resultCode == RESULT_OK && data != null && data.getData() != null) {
@@ -136,7 +136,9 @@ public class CategoryCreateActivity extends BaseActivity {
         return null;
     }
 
+    //create request on server for create category
     public void onCreateCategory(View view) {
+        //input in request data from inputs and file
         String name = Objects.requireNonNull(tlCategoryName.getEditText()).getText().toString().trim();
         String description = Objects.requireNonNull(tlCategoryDescription.getEditText()).getText().toString().trim();
         Log.v(TAG, name + "###" + imagePath + "###" + description);
@@ -145,6 +147,7 @@ public class CategoryCreateActivity extends BaseActivity {
         params.put("name", RequestBody.create(MediaType.parse("text/plain"), name));
         params.put("description", RequestBody.create(MediaType.parse("text/plain"), description));
 
+        //use image file
         MultipartBody.Part imagePart = null;
         if (imagePath != null) {
             File imageFile = new File(imagePath);
@@ -152,6 +155,7 @@ public class CategoryCreateActivity extends BaseActivity {
             imagePart = MultipartBody.Part.createFormData("imageFile", imageFile.getName(), requestFile);
         }
 
+        //request on server about retrofit
         ApplicationNetwork.getInstance()
                 .getCategoriesApi()
                 .create(params, imagePart)

@@ -32,7 +32,7 @@ public class CategoryItemDTO {
 }
 
  */
-
+//class for get categoryitem with server
 public class CategoryItemDTO{
       private int id;
       private String name;
