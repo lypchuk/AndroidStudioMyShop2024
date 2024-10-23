@@ -15,7 +15,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-<!--    <string name="API_URL">http://newmyshop2024.somee.com/</string>-->
+    <!--    <string name="API_URL">http://newmyshop2024.somee.com/</string>-->
 
 
     <string name="lorem_ipsum">
@@ -54,4 +54,7 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="dialog_delete_category_title">Confirm delete category</string>
+    <string name="dialog_delete_category_text">You sure?</string>
+    <string name="editTitleCategory">Змінити категорію</string>
 </resources>

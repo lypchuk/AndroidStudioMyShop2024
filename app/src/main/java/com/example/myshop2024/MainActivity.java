@@ -29,6 +29,8 @@ public class MainActivity extends BaseActivity {
             return insets;
         });
 
+
+
         textView = findViewById(R.id.textView);
 
     }

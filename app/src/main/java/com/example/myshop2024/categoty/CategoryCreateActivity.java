@@ -163,6 +163,7 @@ public class CategoryCreateActivity extends BaseActivity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.isSuccessful()) {
+
                             Intent intent = new Intent(CategoryCreateActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();

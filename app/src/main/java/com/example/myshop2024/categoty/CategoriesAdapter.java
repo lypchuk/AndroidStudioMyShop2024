@@ -1,5 +1,6 @@
 package com.example.myshop2024.categoty;
 
+import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +23,9 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
     private List<CategoryItemDTO> items;
 
 
+
     public CategoriesAdapter(List<CategoryItemDTO> items) {
+
         this.items = items;
     }
 
@@ -45,6 +48,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoryCardViewHold
 
             //set Id category for delete and edit
             holder.setId(item.getId());
+
             //get image from server
             String ImageUrl = item.getImagePath();
             ImageUrl = ImageUrl.replace("\\","/");
