@@ -3,6 +3,7 @@ package com.example.myshop2024.services;
 
 import com.example.myshop2024.constants.Urls;
 import com.example.myshop2024.network.CategoriesApi;
+import com.example.myshop2024.network.ProductsApi;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -39,5 +40,9 @@ public class ApplicationNetwork {
     //
     public CategoriesApi getCategoriesApi() {
         return retrofit.create(CategoriesApi.class);
+    }
+
+    public ProductsApi getProductsApi() {
+        return retrofit.create(ProductsApi.class);
     }
 }

@@ -33,13 +33,14 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:hint="ID"
+
             android:enabled="false"
             app:layout_constraintTop_toBottomOf="@id/editTitle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textCapSentences" />
+                android:inputType="numberSigned" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
@@ -76,7 +77,7 @@
 
 
         <ImageView
-            android:id="@+id/ivSelectImage"
+            android:id="@+id/editSelectImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -92,21 +93,21 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="64dp"
             android:text="Обрати фото"
-            android:onClick="openGallery"
+            android:onClick="openEditGallery"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/ivSelectImage"
+            app:layout_constraintStart_toEndOf="@+id/editSelectImage"
             app:layout_constraintTop_toBottomOf="@+id/editCategoryDescription" />
 
         <Button
-            android:id="@+id/btnCategoryCreate"
+            android:id="@+id/btnCategorySaveChanges"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="34dp"
-            android:onClick="onCreateCategory"
-            android:text="Додати"
+            android:onClick="onCategorySaveChanges"
+            android:text="Save"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivSelectImage" />
+            app:layout_constraintTop_toBottomOf="@+id/editSelectImage" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

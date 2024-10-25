@@ -20,6 +20,12 @@
         android:theme="@style/Theme.MyShop2024"
         tools:targetApi="31">
         <activity
+            android:name=".product_view_item"
+            android:exported="false" />
+        <activity
+            android:name=".ProductActivity"
+            android:exported="false" />
+        <activity
             android:name=".categoty.CategoryEditActivity"
             android:exported="false" />
         <activity
